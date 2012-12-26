@@ -1,0 +1,13 @@
+/*
+    GFMarkdownEditor
+    please see https://github.com/romaricdrigon/GFMarkdownEditor
+*/
+
+body {
+    margin: 30px;
+}
+
+/* reset browser default */
+ul, ol {
+    padding-left: 40px;
+}

@@ -67,7 +67,7 @@ var GFMEditor = function(obj) {
     };
 
     var loadPreview = function(content) {
-        $('#preview').html(content);
+        $('iframe#preview').contents().find('body').html(content);
     };
 
     // public methods here
