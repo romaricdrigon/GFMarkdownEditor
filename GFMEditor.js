@@ -5,8 +5,10 @@
  */
 
 var GFMEditor = function(obj) {
+    // those will behave as private attributes
     var _editor = ace.edit("editor");
     var _session = _editor.getSession();
+    var _credentials = null;
 
     // private methods
 
@@ -51,6 +53,8 @@ var GFMEditor = function(obj) {
     var bindButtons = function() {
         //_session.on('change', requestPreview); // automatic mode - later maybe!
         $('#preview-button').on('click', requestPreview);
+        $('#login-button').on('click', login);
+        $('#logout-button').on('click', logout);
         $('#cheatsheet-button').on('click', function(e) {
             e.preventDefault();
             $('iframe#preview').contents().find('#inner-preview').toggle();
@@ -68,20 +72,57 @@ var GFMEditor = function(obj) {
             }),
             dataType: 'html',
             error: function(jqXHR, textStatus, errorThrown) {
-                if (jqXHR.responseText.search('API Rate Limit Exceeded') !== -1) {
-                    loadPreview('Oops, it seems your IP has made too much requests to Github API!');
+                var message = JSON.parse(jqXHR.responseText).message;
+
+                if (message.search('API Rate Limit Exceeded') !== -1) {
+                    loadPreview('Oops, it seems your IP has made too much requests to Github API. You should consider login in!');
+                } else if (message === 'Bad credentials') {
+                    loadPreview('Your Github credentials seem to be invalid');
+                    logout();
                 } else {
                     loadPreview('There was an error while connecting to Github API');
                 }
             },
             success: function(data, textStatus, jqXHR) {
                 loadPreview(data);
+            },
+            beforeSend: function (xhr) {
+                if (_credentials !== null) {
+                    xhr.setRequestHeader('Authorization', 'Basic ' + _credentials);
+                }
             }
         });
     };
 
     var loadPreview = function(content) {
         $('iframe#preview').contents().find('#inner-preview').html(content);
+    };
+
+    var login = function() {
+        window.alert("You can login with your Github credentials. This removes the limit of 60 requests (previews) per hour. " +
+                        "Your credentials are not stored on any website, and are send using SSL encryption to Github. " +
+                        "They'll only remain in the memory of your computer (which is considered safe).\r\r" +
+                        "Just be sure to close your browser when you're finished, and avoid this on a public computer!");
+
+        var user = window.prompt("Please enter your Github username");
+        var password = window.prompt("Please enter your Github password");
+
+        if (user !== null && password !== null && user !== '' && password !== '') {
+            _credentials = btoa(user + ':' + password);
+            $('#login-text').text('Logged as ' + user + ' - ');
+            $('#login-button').hide();
+            $('#logout-button').show();
+            requestPreview();
+        } else {
+            window.alert('Please enter some credentials!');
+        }
+    };
+
+    var logout = function() {
+        _credentials = null;
+        $('#login-text').text('');
+        $('#login-button').show();
+        $('#logout-button').hide();
     };
 
     // public methods here
