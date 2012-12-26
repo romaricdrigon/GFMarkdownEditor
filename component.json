@@ -1,0 +1,8 @@
+{
+    "name": "GFMarkdownEditor",
+    "version": "0.0.5",
+    "dependencies": {
+        "jquery": "~1.8.3",
+        "ace": ""
+  }
+}

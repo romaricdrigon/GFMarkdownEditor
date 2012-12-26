@@ -1,0 +1,25 @@
+/*
+    GFMarkdownEditor
+    please see https://github.com/romaricdrigon/GFMarkdownEditor
+*/
+
+html {
+    height: 100%;
+}
+body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+}
+
+.panes {
+    height: -webkit-calc(100% - 40px);
+    height: -moz-calc(100% - 40px);
+    height: -o-calc(100% - 40px);
+    height: calc(100% - 40px);
+}
+.footer {
+    background: #333;
+    bottom: 0;
+    height: 40px;
+}
