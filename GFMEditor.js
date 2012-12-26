@@ -48,9 +48,14 @@ var GFMEditor = function(obj) {
         }
     };
 
-    var bindPreview = function() {
+    var bindButtons = function() {
         //_session.on('change', requestPreview); // automatic mode - later maybe!
         $('#preview-button').on('click', requestPreview);
+        $('#cheatsheet-button').on('click', function(e) {
+            e.preventDefault();
+            $('iframe#preview').contents().find('#inner-preview').toggle();
+            $('iframe#preview').contents().find('#cheat-sheet').toggle();
+        });
     };
 
     var requestPreview = function() {
@@ -85,7 +90,7 @@ var GFMEditor = function(obj) {
             setEditor();
             bindBeforeUnload();
             loadLocalContent();
-            bindPreview();
+            bindButtons();
         }
     };
 };

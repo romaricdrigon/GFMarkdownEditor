@@ -11,3 +11,8 @@ body {
 ul, ol {
     padding-left: 40px;
 }
+
+/* hide GFM cheat sheet */
+.cheat-sheet {
+    display: none;
+}
