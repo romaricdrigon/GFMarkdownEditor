@@ -62,8 +62,12 @@ var GFMEditor = function(obj) {
                 "mode": "gfm"
             }),
             dataType: 'html',
-            error: function() {
-                console.log('Error');
+            error: function(jqXHR, textStatus, errorThrown) {
+                if (jqXHR.responseText.search('API Rate Limit Exceeded') !== -1) {
+                    loadPreview('Oops, it seems your IP has made too much requests to Github API!');
+                } else {
+                    loadPreview('There was an error while connecting to Github API');
+                }
             },
             success: function(data, textStatus, jqXHR) {
                 loadPreview(data);
@@ -72,7 +76,7 @@ var GFMEditor = function(obj) {
     };
 
     var loadPreview = function(content) {
-        $('iframe#preview').contents().find('body').html(content);
+        $('iframe#preview').contents().find('#inner-preview').html(content);
     };
 
     // public methods here
