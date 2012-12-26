@@ -4,10 +4,15 @@
     <title>GFMarkdownEditor</title>
     <meta charset="UTF-8">
     <link type="text/css" rel="stylesheet" href="style.css" />
+    <script type="text/javascript" src="components/jquery/jquery.min.js"></script>
+    <script type="text/javascript" src="components/ace-builds/src-min/ace.js"></script>
+    <script type="text/javascript" src="script.js"></script>
 </head>
 <body>
     <div class="panes">
-        <div class="editor-pane"></div>
+        <div class="editor-pane">
+            <div class="editor" id="editor"></div>
+        </div>
         <div class="preview-pane"></div>
     </div>
     <div class="footer"></div>

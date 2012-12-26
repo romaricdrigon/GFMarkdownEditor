@@ -12,12 +12,36 @@ body {
     height: 100%;
 }
 
+/* central page */
 .panes {
     height: -webkit-calc(100% - 40px);
     height: -moz-calc(100% - 40px);
     height: -o-calc(100% - 40px);
     height: calc(100% - 40px);
 }
+.editor-pane {
+    float: left;
+    position: relative; /* will force #editor to stay inside */
+    top: 0;
+    left: 0;
+    width: 50%;
+    height: 100%;
+    background: green;
+    clear: both;
+}
+.editor {
+    height: 100%;
+    width: 100%;
+}
+.preview-pane {
+    top: 0;
+    margin-left: 50%;
+    width: 50%;
+    height: 100%;
+    background: blue;
+}
+
+/* footer */
 .footer {
     background: #333;
     bottom: 0;
