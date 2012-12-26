@@ -1,6 +1,6 @@
 {
   "name": "GFMarkdownEditor",
-  "version": "0.0.5",
+  "version": "1.0.0",
   "dependencies": {
     "jquery": "~1.8.3",
     "ace-builds": "git://github.com/ajaxorg/ace-builds.git#~1.0.0",

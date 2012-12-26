@@ -8,11 +8,14 @@ It uses [Github API](http://developer.github.com/v3/markdown/) to get a preview.
 
 ## Online demo
 
-Coming soon!
+You can test/use it here: [http://gfmeditor.romaricdrigon.fr/](http://gfmeditor.romaricdrigon.fr/)
 
-## Requirements
+## Quick install
 
 It uses [Twitter Bower](https://github.com/twitter/bower) to fetch assets, just run ```bower install```
+Or, if you're lazy, I uploaded a complete distribution (including assets) [here](http://gfmeditor.romaricdrigon.fr/GFMarkdownEditor-1.0.0.zip)
+
+From localhost, everything should run fine. To use it from a webdomain, as documented [here](http://developer.github.com/v3/#cross-origin-resource-sharing), you must register your application as an [OAuth application](https://github.com/settings/applications) (fill up the form, the callback URL doesn't really matter).
 
 ## Credits
 
