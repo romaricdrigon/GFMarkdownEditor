@@ -22,6 +22,8 @@ var GFMEditor = function(obj) {
         // use soft tabs
         _session.setUseSoftTabs(true);
         _session.setTabSize(4);
+
+        _editor.setShowFoldWidgets(false); // useless in Markdown
     };
 
     var bindBeforeUnload = function() {
@@ -29,6 +31,7 @@ var GFMEditor = function(obj) {
             // we save editor content to localStorage
             if (localStorage) {
                 localStorage['GFM'] = _editor.getValue();
+
                 return "Do you really want to quit/refresh this page?\nYour document was saved";
             }
 
@@ -40,12 +43,14 @@ var GFMEditor = function(obj) {
         if (localStorage) {
             if (localStorage['GFM']) {
                 _editor.setValue(localStorage['GFM'], -1); // cursor at document start
+                requestPreview(); // preview!
             }
         }
     };
 
     var bindPreview = function() {
-        _editor.on('change', requestPreview);
+        //_session.on('change', requestPreview); // automatic mode - later maybe!
+        $('#preview-button').on('click', requestPreview);
     };
 
     var requestPreview = function() {
@@ -76,8 +81,7 @@ var GFMEditor = function(obj) {
             setEditor();
             bindBeforeUnload();
             loadLocalContent();
-            //bindPreview();
-            requestPreview();
+            bindPreview();
         }
     };
 };
