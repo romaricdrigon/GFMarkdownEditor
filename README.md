@@ -1,4 +1,4 @@
-# GFMMarkdown Editor
+# GFMarkdown Editor
 
 This is an online (in the browser) editor with live preview. 
 
