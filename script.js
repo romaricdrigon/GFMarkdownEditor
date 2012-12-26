@@ -20,4 +20,21 @@ $(document).ready(function() {
     editor.getSession().setUseSoftTabs(true);
     editor.getSession().setTabSize(4);
 
+    // warn user when refreshing page
+    window.onbeforeunload = function() {
+        // we save editor content to localStorage
+        if (localStorage) {
+            localStorage['GFM'] = editor.getValue();
+            return "Do you really want to quit/refresh this page?\nYour document was saved";
+        }
+
+        return "Do you really want to quit/refresh this page?\nYou will lost your document";
+    };
+
+    // load content previously saved
+    if (localStorage) {
+        if (localStorage['GFM']) {
+            editor.setValue(localStorage['GFM'], -1); // cursor at document start
+        }
+    }
 });
