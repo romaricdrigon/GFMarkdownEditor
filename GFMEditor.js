@@ -44,12 +44,40 @@ var GFMEditor = function(obj) {
         }
     };
 
+    var bindPreview = function() {
+        _editor.on('change', requestPreview);
+    };
+
+    var requestPreview = function() {
+        $.ajax({
+            type: 'POST',
+            url: 'https://api.github.com/markdown',
+            data: JSON.stringify({
+                "text": _editor.getValue(),
+                "mode": "gfm"
+            }),
+            dataType: 'html',
+            error: function() {
+                console.log('Error');
+            },
+            success: function(data, textStatus, jqXHR) {
+                loadPreview(data);
+            }
+        });
+    };
+
+    var loadPreview = function(content) {
+        $('#preview').html(content);
+    };
+
     // public methods here
     return {
         init: function() {
             setEditor();
             bindBeforeUnload();
             loadLocalContent();
+            //bindPreview();
+            requestPreview();
         }
     };
 };

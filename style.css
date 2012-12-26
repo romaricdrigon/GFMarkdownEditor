@@ -16,7 +16,6 @@ body {
 .panes {
     height: -webkit-calc(100% - 40px);
     height: -moz-calc(100% - 40px);
-    height: -o-calc(100% - 40px);
     height: calc(100% - 40px);
 }
 .editor-pane {
@@ -40,8 +39,14 @@ body {
     height: 100%;
 }
 .preview {
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
     height: 100%;
     width: 100%;
+    padding: 20px;
+    overflow: scroll;
+    word-wrap: break-word;
 }
 
 /* footer */
