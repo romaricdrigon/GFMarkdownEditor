@@ -12,12 +12,15 @@ Other features include a decent editor (using Ace Editor), with syntax highlight
 
 You can test/use it here: [http://gfmeditor.romaricdrigon.fr/](http://gfmeditor.romaricdrigon.fr/)
 
+The demo maybe outdated regarding this Github repository!
+
 ## Quick install
 
 It uses [Twitter Bower](https://github.com/twitter/bower) to fetch assets, just run ```bower install```
-Or, if you're lazy, I uploaded a complete distribution (including assets) [here](http://gfmeditor.romaricdrigon.fr/GFMarkdownEditor-1.0.0.zip)
 
-From a local webserver, everything should run fine (you can't use the preview without a webserver). 
+From a local webserver, everything should run fine. Just open `index_dev.html` with a browser.
+**Note**: it seems Github, as of 2013-03-03, does not allow anymore `localhost` host for requests, unless you are logged in.
+
 To use it from a webdomain, as documented [here](http://developer.github.com/v3/#cross-origin-resource-sharing), you must register your application on Github as an [OAuth application](https://github.com/settings/applications) (fill up the form, the callback URL doesn't really matter).
 
 ## Credits

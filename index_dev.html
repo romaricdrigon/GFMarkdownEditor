@@ -6,7 +6,13 @@
     <link type="text/css" rel="stylesheet" href="style.css" />
     <script type="text/javascript" src="components/jquery/jquery.min.js"></script>
     <script type="text/javascript" src="components/ace-builds/src-min/ace.js"></script>
-    <script type="text/javascript" src="GFMEditor.js"></script>
+    <!-- our application modules -->
+    <script type="text/javascript" src="src/gfmeditor.js"></script>
+    <script type="text/javascript" src="src/gapipreview.js"></script>
+    <script type="text/javascript" src="src/gfmgithubauth.js"></script>
+    <script type="text/javascript" src="src/gfmbackup.js"></script>
+    <!-- lastly, the bootstrap script -->
+    <script type="text/javascript" src="script.js"></script>
 </head>
 <body>
     <div class="panes">
@@ -28,9 +34,5 @@
             Fork me on <a href="https://github.com/romaricdrigon/GFMarkdownEditor">Github</a>!
         </span>
     </div>
-    <script type="text/javascript">
-        var editor = new GFMEditor({});
-        editor.init();
-    </script>
 </body>
 </html>

@@ -1,0 +1,81 @@
+/*
+    GFMarkdownEditor 0.2
+    please see https://github.com/romaricdrigon/GFMarkdownEditor
+ */
+/*
+    this module is in charge of preview,
+    this one using Github API
+ */
+var GapiPreview = (function() {
+    var _githubCredentials,
+        _previewIframe,
+        _previewInnerDivId,
+        _previewPending;
+
+    var _requestPreview = function(md_text) {
+        if (_previewPending === true) {
+            return; // no multiple previews
+        }
+        _previewPending = true;
+        _loadPreview('Preview pending...');
+
+        $.ajax({
+            type: 'POST',
+            url: 'https://api.github.com/markdown',
+            data: JSON.stringify({
+                'text': md_text,
+                'mode': 'gfm'
+            }),
+            dataType: 'html',
+            error: function(jq_xhr, text_status, error_thrown) {
+                if (jq_xhr.responseText === '') {
+                    _requestSuccess('Unable to connect to Github API. Is you internet connection all right?');
+                    return;
+                }
+
+                var message = JSON.parse(jq_xhr.responseText).message;
+
+                if (message.search('API Rate Limit Exceeded') !== -1) {
+                    _requestSuccess('Oops, it seems your IP has made too much requests to Github API. ' +
+                                    'You should consider login in!');
+                } else if (message === 'Bad credentials') {
+                    _requestSuccess('Your Github credentials seem to be invalid');
+                } else {
+                    _requestSuccess('There was an error while connecting to Github API');
+                }
+            },
+            success: function(data, text_status, jq_xhr) {
+                _requestSuccess(data);
+            },
+            beforeSend: function(xhr) {
+                if (_githubCredentials !== null) {
+                    xhr.setRequestHeader('Authorization', 'Basic ' + _githubCredentials);
+                }
+            }
+        });
+    };
+
+    var _requestSuccess = function(html_text) {
+        _previewPending = false;
+
+        _loadPreview(html_text);
+    };
+
+    var _loadPreview = function(html_text) {
+        _previewIframe.contents().find(_previewInnerDivId).html(html_text);
+    };
+
+    // public methods here
+    return {
+        init: function(iframe_id, inner_div_id) {
+            _previewIframe = $('iframe#' + iframe_id);
+            _previewInnerDivId = '#' + inner_div_id;
+        },
+        preview: function(md_text) {
+            _requestPreview(md_text);
+        },
+        setGithubCredentials: function(github_credentials) {
+            _githubCredentials = github_credentials;
+        }
+    };
+})();
