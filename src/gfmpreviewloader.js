@@ -6,7 +6,7 @@
     this is the "view" of the preview,
     here in the left pane
  */
-var LeftPanePreView = (function() {
+var GfmPreviewLoader = (function() {
     var _previewIframe,
         _previewInnerDivId;
 

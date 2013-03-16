@@ -8,7 +8,7 @@
     <script type="text/javascript" src="components/ace-builds/src-min/ace.js"></script>
     <!-- our application modules -->
     <script type="text/javascript" src="src/gfmeditor.js"></script>
-    <script type="text/javascript" src="src/leftpanepreview.js"></script>
+    <script type="text/javascript" src="src/gfmpreviewloader.js"></script>
     <script type="text/javascript" src="src/gapipreview.js"></script>
     <script type="text/javascript" src="src/gfmgithubauth.js"></script>
     <script type="text/javascript" src="src/gfmbackup.js"></script>
@@ -16,7 +16,7 @@
     <script type="text/javascript" src="script.js"></script>
 </head>
 <body>
-    <div class="panes">
+    <div id="parent">
         <div class="editor-pane">
             <div class="editor" id="editor"></div>
         </div>
