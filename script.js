@@ -15,8 +15,6 @@ $(document).ready(function() {
     // we need a preview loader objet
     GfmPreviewLoader.init('preview', 'inner-preview');
 
-    // we choose two equally sized panes mode
-
     // we use Github API for preview
     GapiPreview.init(GfmPreviewLoader.load);
     var previewer = GapiPreview;
