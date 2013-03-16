@@ -79,6 +79,9 @@ body {
 .grey-text a {
     color: #888;
 }
+.toolbar {
+    display: inline;
+}
 
 /* cheat sheet */
 .cheat-sheet {
