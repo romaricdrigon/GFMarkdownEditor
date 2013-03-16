@@ -12,8 +12,12 @@ $(document).ready(function() {
     // set up an editor in "#editor" div
     GfmEditor.init('editor');
 
+    // First, we use left part of the screen for the preview
+    LeftPanePreView.init('preview', 'inner-preview');
+
     // we use Github API for preview
-    GapiPreview.init('preview', 'inner-preview');
+    GapiPreview.init(LeftPanePreView.load);
+
     // preview when the user clicks a button
     $('#preview-button').on('click', function(e) {
         e.preventDefault();

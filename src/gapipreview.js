@@ -8,8 +8,7 @@
  */
 var GapiPreview = (function() {
     var _githubCredentials,
-        _previewIframe,
-        _previewInnerDivId,
+        _previewCallback,
         _previewPending;
 
     var _requestPreview = function(md_text) {
@@ -17,7 +16,7 @@ var GapiPreview = (function() {
             return; // no multiple previews
         }
         _previewPending = true;
-        _loadPreview('Preview pending...');
+        _previewCallback('Preview pending...');
 
         $.ajax({
             type: 'POST',
@@ -58,18 +57,13 @@ var GapiPreview = (function() {
     var _requestSuccess = function(html_text) {
         _previewPending = false;
 
-        _loadPreview(html_text);
-    };
-
-    var _loadPreview = function(html_text) {
-        _previewIframe.contents().find(_previewInnerDivId).html(html_text);
+        _previewCallback(html_text);
     };
 
     // public methods here
     return {
-        init: function(iframe_id, inner_div_id) {
-            _previewIframe = $('iframe#' + iframe_id);
-            _previewInnerDivId = '#' + inner_div_id;
+        init: function(preview_func) {
+            _previewCallback = preview_func;
         },
         preview: function(md_text) {
             _requestPreview(md_text);
