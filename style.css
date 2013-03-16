@@ -79,3 +79,8 @@ body {
 .grey-text a {
     color: #888;
 }
+
+/* cheat sheet */
+.cheat-sheet {
+    display: none;
+}

@@ -49,14 +49,7 @@ $(document).ready(function() {
         true
     );
 
-    // we added the GFM cheatsheet
-    // TODO: make a it previewer-independant
-    /*if (preview === LeftPanePreView) {
-        $('#cheatsheet-button').on('click', function(e) {
-            e.preventDefault();
-
-            $('iframe#preview').contents().find('#inner-preview').toggle();
-            $('iframe#preview').contents().find('#cheat-sheet').toggle();
-        });
-    }*/
+    // we add the GFM cheatsheet
+    GfmCheatSheet.init(GfmPreviewLoader.load, $('#cheat-sheet').html());
+    GfmCheatSheet.addButtons('toolbar');
 });

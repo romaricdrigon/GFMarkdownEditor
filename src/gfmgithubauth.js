@@ -45,8 +45,8 @@ var GfmGithubAuth = (function(window) {
             _onLogout = onLogout;
         },
         addButtons: function(toolbarId) {
-            $('#' + toolbarId).append('<span id="login-text"></span><a href="#" id="login-button">Login</a>' +
-                                        '<a href="#" id="logout-button" class="logout-button">Logout</a>');
+            $('#' + toolbarId).append('&nbsp;<span id="login-text"></span><a href="#" id="login-button">Login</a>' +
+                                        '<a href="#" id="logout-button" class="logout-button">Logout</a>&nbsp;');
 
             _loginButton = $('#login-button');
             _loginButton.on('click', _login);
