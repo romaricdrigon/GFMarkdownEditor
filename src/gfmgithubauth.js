@@ -23,8 +23,8 @@ var GfmGithubAuth = (function(window) {
         var password = window.prompt("Please enter your Github password");
 
         if (user !== null && password !== null && user !== '' && password !== '') {
-            _loginButton.hide();
-            _logoutButton.show();
+            (_loginButton !== undefined) && (_loginButton.hide());
+            (_logoutButton !== undefined) && (_logoutButton.show());
 
             _onLogin(btoa(user + ':' + password));
         } else {
@@ -33,21 +33,25 @@ var GfmGithubAuth = (function(window) {
     };
 
     var _logout = function() {
-        _loginButton.show();
-        _logoutButton.hide();
+        (_loginButton !== undefined) && (_loginButton.show());
+        (_logoutButton !== undefined) && (_logoutButton.hide());
 
         _onLogout();
     };
 
     return {
-        init: function(loginButtonId, logoutButtonId, onLogin, onLogout) {
+        init: function(onLogin, onLogout) {
             _onLogin = onLogin;
             _onLogout = onLogout;
+        },
+        addButtons: function(toolbarId) {
+            $('#' + toolbarId).append('<span id="login-text"></span><a href="#" id="login-button">Login</a>' +
+                                        '<a href="#" id="logout-button" class="logout-button">Logout</a>');
 
-            _loginButton = $('#' + loginButtonId);
+            _loginButton = $('#login-button');
             _loginButton.on('click', _login);
 
-            _logoutButton = $('#' + logoutButtonId);
+            _logoutButton = $('#logout-button');
             _logoutButton.on('click', _logout);
             _logoutButton.hide();
         },

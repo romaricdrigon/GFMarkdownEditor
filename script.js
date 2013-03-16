@@ -29,8 +29,6 @@ $(document).ready(function() {
 
     // user can log in using his GitHub Account
     GfmGithubAuth.init(
-        'login-button',
-        'logout-button',
         function(credentials) {
             previewer.setGithubCredentials(credentials);
             previewer.preview(GfmEditor.getContent()); // preview after login
@@ -39,6 +37,7 @@ $(document).ready(function() {
             GapiPreview.setGithubCredentials(null); // only GapiPreview have a such method
         }
     );
+    GfmGithubAuth.addButtons('toolbar');
 
     // lastly, content will be saved when user try to leave
     GfmBackup.init(
