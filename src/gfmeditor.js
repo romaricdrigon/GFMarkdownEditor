@@ -37,6 +37,9 @@ var GfmEditor = (function(ace) {
             },
             setContent: function(content) {
                 _editor.setValue(content, -1); // cursor at document start
+            },
+            resize: function() {
+                _editor.resize();
             }
         };
 })(ace);

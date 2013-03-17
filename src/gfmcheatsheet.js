@@ -19,9 +19,8 @@ var GfmCheatSheet = (function($) {
             _cheatSheetText = cheat_sheet_text;
         },
         addButtons: function(toolbar_id) {
-            $('#' + toolbar_id)
-                .append('&nbsp;<a href="#" id="cheatsheet-button">GFM Cheat Sheet</a>&nbsp;')
-                .on('click', _show);
+            $('#' + toolbar_id).append('&nbsp;<a href="#" id="cheatsheet-button">GFM Cheat Sheet</a>&nbsp;')
+            $('#cheatsheet-button').on('click', _show);
         },
         show: _show
     };

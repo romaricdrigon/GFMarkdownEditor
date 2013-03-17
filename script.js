@@ -13,7 +13,9 @@ $(document).ready(function() {
     GfmEditor.init('editor');
 
     // we need a preview loader objet
-    GfmPreviewLoader.init('preview', 'inner-preview');
+    GfmPreviewLoader.init('parent', 'preview', 'inner-preview', GfmEditor.resize);
+    GfmPreviewLoader.addButtons('toolbar');
+    GfmPreviewLoader.setMode('panes');
 
     // we use Github API for preview
     GapiPreview.init(GfmPreviewLoader.load);
