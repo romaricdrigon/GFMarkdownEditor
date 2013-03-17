@@ -12,11 +12,12 @@ $(document).ready(function() {
     // set up an editor in "#editor" div
     GfmEditor.init('editor');
 
-    // we need a preview loader objet
-    GfmPreviewLoader.init('preview', 'inner-preview');
+    // we need a preview loader objet - using two panes here
+    GfmPanesPreview.init('parent', 'preview', 'inner-preview');
+    var previewLoader = GfmPanesPreview;
 
     // we use Github API for preview
-    GapiPreview.init(GfmPreviewLoader.load);
+    GapiPreview.init(previewLoader.load);
     var previewer = GapiPreview;
 
     // preview when the user clicks a button
@@ -48,6 +49,6 @@ $(document).ready(function() {
     );
 
     // we add the GFM cheatsheet
-    GfmCheatSheet.init(GfmPreviewLoader.load, $('#cheat-sheet').html());
+    GfmCheatSheet.init(previewLoader.load, $('#cheat-sheet').html());
     GfmCheatSheet.addButtons('toolbar');
 });

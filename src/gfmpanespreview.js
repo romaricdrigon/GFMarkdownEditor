@@ -3,10 +3,10 @@
     please see https://github.com/romaricdrigon/GFMarkdownEditor
  */
 /*
-    this is the "view" of the preview,
-    here in the left pane
+    This module will load the preview,
+    using a two panes view
  */
-var GfmPreviewLoader = (function() {
+var GfmPanesPreview = (function() {
     var _previewIframe,
         _previewInnerDivId;
 
@@ -16,7 +16,9 @@ var GfmPreviewLoader = (function() {
 
     // public methods here
     return {
-        init: function(iframe_id, inner_div_id) {
+        init: function(parent_id, iframe_id, inner_div_id) {
+            $('#' + parent_id).removeClass().addClass('panes');
+
             _previewIframe = $('iframe#' + iframe_id);
             _previewInnerDivId = '#' + inner_div_id;
         },
