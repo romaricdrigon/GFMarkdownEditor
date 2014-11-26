@@ -8,12 +8,6 @@ It uses Github API to get a preview. Anonymous users are limited to 60 requests/
 
 Other features include a decent editor (using Ace Editor), with syntax highlighting, the ability to save a document to localStorage (automatically when you try to leave the page), access to GFM cheat sheet.
 
-## Online demo
-
-You can test/use it here: [http://gfmeditor.romaricdrigon.fr/](http://gfmeditor.romaricdrigon.fr/)
-
-The demo maybe outdated regarding this Github repository!
-
 ## Quick install
 
 It uses [Twitter Bower](https://github.com/twitter/bower) to fetch assets, just run ```bower install```
